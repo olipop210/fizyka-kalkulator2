@@ -33,6 +33,9 @@ function App() {
           <WhatIs />
           <HowToCount />
           <Calc />
+          <section style={{ backgroundColor: theme.palette.primary.main }} className='footer'>
+            <h2>Autor strony: Oliwier Popielarczyk</h2>
+          </section>
         </main>
       </ThemeProvider>
     </>

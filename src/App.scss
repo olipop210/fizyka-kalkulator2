@@ -76,7 +76,11 @@
       flex-direction: row;
       justify-content: space-evenly;
       flex-wrap: wrap;
-
+      word-wrap: normal;
+      overflow: auto;
+      >*:first-of-type{
+        margin-top: 20px;
+      }
       >*{
         width: 60%;
         margin-bottom: 15px;
@@ -102,4 +106,13 @@
     align-items: center;
     justify-content: center;
   }
+}
+
+.footer{
+  width: 80%;
+    margin-left: 10%;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }

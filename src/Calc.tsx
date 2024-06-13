@@ -64,7 +64,7 @@ const Calc = () => {
         console.table(dane)
         v0 = 0
 
-        let finalData = [{ p: 0, L: 0, q: 0 }];
+        let finalData = [{ p: 0, L: 0, q: 0, h: 0, v: 0 }];
         //console.error(dane[dane.length - 1].h)
 
         for (let t: number = 1; t < dane.length; t++) {
@@ -77,7 +77,7 @@ const Calc = () => {
             let potega = Math.pow(potegowana, wykladnik)
             let p: number = parseFloat((1.225 * potega).toFixed(6))
             let q: number = parseFloat(((p * v * v) / 2).toFixed(3))
-            finalData.push({ p: p, L: L, q: q })
+            finalData.push({ p: p, L: L, q: q, h: h, v: v })
         }
 
         let maxIndex: number = 0;
@@ -96,13 +96,50 @@ const Calc = () => {
         //console.log(maxIndex)
         let labels = [];
         let qArray = [];
+        let hArray = [];
+        let vArray = [];
+        let pArray = [];
         for (let i = 0; i < maxTime * 2; i++) {
             labels.push(String(i / 2))
             qArray.push(finalData[i].q)
+            hArray.push(finalData[i].h / 1000)
+            vArray.push(finalData[i].v * 3.6)
+            pArray.push(finalData[i].p)
         }
         let config = {
             xAxis: labels,
-            series: qArray
+            series: [
+                {
+                    data: qArray,
+                    label: "Opór dynamiczny (Pa)",
+                    showMark: ({ index }) => index % 5 === 0 || index === maxIndex,
+                    color: "rgb(255, 255, 255)",
+                    yAxisKey: 'leftAxisId'
+
+                },
+                {
+                    data: hArray,
+                    label: "Wysokość (km)",
+                    showMark: ({ index }) => index % 5 === 0,
+                    color: "rgb(0, 255, 0)",
+                    yAxisKey: 'rightAxisId'
+                },
+                {
+                    data: vArray,
+                    label: "Szybkość (km/h)",
+                    showMark: ({ index }) => index % 5 === 0,
+                    color: "rgb(0, 0, 255)",
+                    yAxisKey: 'leftAxisId'
+                }/*,
+                {
+                    data: pArray,
+                    label: "Gęstość powietrza (kg/m3)",
+                    showMark: ({ index }) => index % 5 === 0,
+                    color: "rgb(255, 0, 255)",
+                    yAxisKey: 'rightAxisId'
+
+                }*/
+            ]
         }
         setConfig(config)
         setMaxQTime(maxIndex)
@@ -131,7 +168,7 @@ const Calc = () => {
                         <TextField onChange={(e) => { setFuelFlow(parseFloat(e.target.value)) }} label='Przepływ paliwa (kg/s)' type='number' />
                     </Tooltip>
                     <Tooltip title="Ciąg rakiety">
-                        <TextField onChange={(e) => { setThrust(parseFloat(e.target.value)) }} label='Ciąg rakiety' type='number' />
+                        <TextField onChange={(e) => { setThrust(parseFloat(e.target.value)) }} label='Ciąg rakiety (kN)' type='number' />
                     </Tooltip>
                     <Tooltip title="Czas spalania (s)">
                         <TextField onChange={(e) => { setMaxTime(parseFloat(e.target.value)) }} label='Czas spalania (s)' type='number' />
@@ -143,7 +180,7 @@ const Calc = () => {
             {
                 config ? (<section style={{ backgroundColor: theme.palette.background.paper }} className="chart">
                     <h2>Max Q zostanie osiągnięte w {maxQTime / 2} sekundzie i będzie wynosić {maxQValue}Pa</h2>
-                    <LineChart width={window.innerWidth * 0.8} height={500} xAxis={[{ data: config.xAxis }]} series={[{ data: config.series }]} />
+                    <LineChart width={window.innerWidth * 0.8} height={500} xAxis={[{ data: config.xAxis }]} yAxis={[{ id: 'leftAxisId' }, { id: 'rightAxisId' }]} rightAxis="rightAxisId" series={config.series} />
                 </section>) : null
             }
 
