@@ -1,26 +1,42 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import './App.scss'
+import { ThemeProvider, createTheme } from '@mui/material'
+import WhatIs from './WhatIs'
+import HowToCount from './HowToCount'
+import Calc from './Calc'
+import Navbar from './Navbar'
 
 function App() {
+
+
+  const theme = createTheme({
+
+    palette: {
+      mode: 'dark',
+      primary: {
+        main: '#1ebca0',
+      },
+      secondary: {
+        main: '#bc1e3b',
+      },
+      background: {
+        default: '#120f1a',
+        paper: '#00000e',
+      },
+    },
+  })
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <>
+      <ThemeProvider theme={theme}>
+        <main className='siteBody' style={{ backgroundColor: theme.palette.background.default, color: theme.palette.text.primary, paddingBottom: 40 }}>
+          <Navbar />
+          <WhatIs />
+          <HowToCount />
+          <Calc />
+        </main>
+      </ThemeProvider>
+    </>
+  )
 }
 
-export default App;
+export default App
