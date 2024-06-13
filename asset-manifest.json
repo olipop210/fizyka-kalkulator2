@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/fizyka-kalkulator2/static/css/main.d0b1a2d5.css",
-    "main.js": "/fizyka-kalkulator2/static/js/main.bebdf3bd.js",
+    "main.css": "/fizyka-kalkulator2/static/css/main.d60e7ed7.css",
+    "main.js": "/fizyka-kalkulator2/static/js/main.fde8130e.js",
     "static/js/453.a4902617.chunk.js": "/fizyka-kalkulator2/static/js/453.a4902617.chunk.js",
     "index.html": "/fizyka-kalkulator2/index.html",
-    "main.d0b1a2d5.css.map": "/fizyka-kalkulator2/static/css/main.d0b1a2d5.css.map",
-    "main.bebdf3bd.js.map": "/fizyka-kalkulator2/static/js/main.bebdf3bd.js.map",
+    "main.d60e7ed7.css.map": "/fizyka-kalkulator2/static/css/main.d60e7ed7.css.map",
+    "main.fde8130e.js.map": "/fizyka-kalkulator2/static/js/main.fde8130e.js.map",
     "453.a4902617.chunk.js.map": "/fizyka-kalkulator2/static/js/453.a4902617.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.d0b1a2d5.css",
-    "static/js/main.bebdf3bd.js"
+    "static/css/main.d60e7ed7.css",
+    "static/js/main.fde8130e.js"
   ]
 }
